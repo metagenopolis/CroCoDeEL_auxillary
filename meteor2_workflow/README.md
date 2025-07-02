@@ -78,13 +78,13 @@ nextflow run meteor.nf \
   --project_name <output_files_prefix> \
   --sequencing_data_dir <path_to_sequencing_data> \
   --output_dir <output_dir>
-  --catalogue_name mm_5_0_gut \
+  --gene_catalogue mm_5_0_gut \
   --fastq_extension '.fastq'
  ```
 
 #### Defaults:
 
-* \--catalogue\_name: hs\_10\_4\_gut
+* \--gene\_catalogue: hs\_10\_4\_gut
 * \--fastq\_extension: .fastq.gz
 
 ---
