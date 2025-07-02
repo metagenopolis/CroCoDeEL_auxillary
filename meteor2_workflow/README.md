@@ -36,16 +36,16 @@ Organize your metagenomic data as follows:
 
 Example:
 
-sequencing\_data/
-├── sample1/
-│   ├── runA\_1.fastq.gz
-│   ├── runA\_2.fastq.gz
-│   ├── runB\_1.fastq.gz
-│   ├── runB\_2.fastq.gz
-├── sample2/
-│   ├── runC\_1.fastq.gz
-│   ├── runC\_2.fastq.gz
-│   ├── runD\_1.fastq.gz
+sequencing\_data/  
+├── sample1/  
+│   ├── runA\_1.fastq.gz  
+│   ├── runA\_2.fastq.gz  
+│   ├── runB\_1.fastq.gz  
+│   ├── runB\_2.fastq.gz  
+├── sample2/  
+│   ├── runC\_1.fastq.gz  
+│   ├── runC\_2.fastq.gz  
+│   ├── runD\_1.fastq.gz  
 │   ├── runD\_2.fastq.gz
 
 ---
@@ -70,7 +70,7 @@ nextflow run meteor.nf \
  ```
 ### Optional Parameters
 
-You can specify a different gene catalogue and FASTQ file extension if needed.
+You can specify a different gene catalogue and FASTQ file extension if needed.  
 Below, we use the mouse gut gene catalogue and uncompressed FASTQ files.
 
 ```bash
