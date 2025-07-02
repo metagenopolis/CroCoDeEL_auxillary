@@ -3,7 +3,7 @@
 
 ## Overview
 
-This is a Nextflow ([https://www.nextflow.io/](https://www.nextflow.io/)) workflow to run **Meteor2** ([https://github.com/metagenopolis/Meteor](https://github.com/metagenopolis/Meteor)) on short-read, paired-end metagenomic sequencing data.
+This is a Nextflow ([https://www.nextflow.io/](https://www.nextflow.io/)) workflow to run **Meteor2** ([https://github.com/metagenopolis/Meteor](https://github.com/metagenopolis/Meteor)) on short-read, single-end or paired-end metagenomic sequencing data.
 It produces gene and species abundance tables among other outputs, enabling downstream microbial profiling and comparative analysis.
 
 > ⚠️ Note: This workflow uses a custom Meteor2 Conda package ([https://anaconda.org/fplazaonate/Meteor](https://anaconda.org/fplazaonate/Meteor)) to ensure full compatibility with Nextflow.
@@ -33,20 +33,24 @@ Organize your metagenomic data as follows:
 * Each subdirectory should contain one or more FASTQ files.
 
 > ⚠️ File naming must follow the convention with `_1` and `_2` indicating forward and reverse reads, respectively.
+> ⚠️ If these suffixes are not present, files will be treated as single-end reads.
 
 Example:
 
 sequencing\_data/  
-├── sample1/  
+├── sample1\_pe/  
 │   ├── runA\_1.fastq.gz  
 │   ├── runA\_2.fastq.gz  
 │   ├── runB\_1.fastq.gz  
 │   ├── runB\_2.fastq.gz  
-├── sample2/  
+├── sample2\_pe/  
 │   ├── runC\_1.fastq.gz  
 │   ├── runC\_2.fastq.gz  
 │   ├── runD\_1.fastq.gz  
 │   ├── runD\_2.fastq.gz
+├── sample3\_se/  
+│   ├── runE.fastq.gz  
+│   ├── runF.fastq.gz  
 
 ---
 

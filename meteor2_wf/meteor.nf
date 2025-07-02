@@ -9,8 +9,8 @@ params.gene_catalogue = "hs_10_4_gut"
 params.fastq_extension = '.fastq.gz'
 params.cpus = 8
 
-def fastq_file_glob = "*_{1,2}${params.fastq_extension}"
-def fastq_file_regex = /^(.+)_([12])\Q${params.fastq_extension}\E$/
+def fastq_file_glob = "*${params.fastq_extension}"
+def fastq_file_regex = /^(.+?)(?:_([12]))?\Q${params.fastq_extension}\E$/
 
 
 
@@ -150,13 +150,14 @@ workflow {
         .fromPath("${params.sequencing_data_dir}/**/${fastq_file_glob}")
         .map { fastq_file ->
             def file_name = fastq_file.getName()
-    	    def sample_dir = fastq_file.getParent()
-    	    def sample_name = sample_dir.getName()
+            def sample_dir = fastq_file.getParent()
+            def sample_name = sample_dir.getName()
             def match = file_name =~ fastq_file_regex
             if (!match) error "Filename doesn't match expected pattern: ${file_name}"
+    
             def run_name = match[0][1]
-            def tag = match[0][2]
-            def json_file = "${run_name}_${tag}_census_stage_0.json"
+            def tag = match[0][2] ?: "single"
+    
             return [sample_name, run_name, tag, fastq_file]
         }
         .set { fastq_files_infos }
