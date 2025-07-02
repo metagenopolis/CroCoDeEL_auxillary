@@ -1,0 +1,7 @@
+name: simulate_conta_read_subsampling_env 
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::seqtk=1.5.0
+  - conda-forge::pigz=2.8
