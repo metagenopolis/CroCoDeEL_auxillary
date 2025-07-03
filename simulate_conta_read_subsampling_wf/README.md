@@ -26,7 +26,7 @@ Organize your sequencing data as follows:
 * Each sample must have its own subdirectory.
 * Each subdirectory must contain one or more FASTQ files.
 
-> ⚠️ For paired-end data, file names must include `_1` and `_2` to indicate forward and reverse reads, respectively.
+> ⚠️ For paired-end data, file names must include `_1` and `_2` to indicate forward and reverse reads, respectively.  
 > ⚠️ Each sample must contain **either** single-end **or** paired-end data, not both.
 
 ### Example
