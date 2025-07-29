@@ -1,0 +1,10 @@
+name: simulate_conta_rarefaction_env.yml
+channels:
+  - conda-forge
+dependencies:
+  - r-base
+  - r-dplyr
+  - r-devtools
+  - r-tibble
+  - r-readr
+  - r-tidyr

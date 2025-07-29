@@ -3,11 +3,7 @@ if (!params.sequencing_data_dir)  error "Missing required parameter: --sequencin
 if (!params.output_dir)           error "Missing required parameter: --output_dir"
 if (!params.project_name)         error "Missing required parameter: --project_name"
 
-// Optional/default parameters
-params.meteor_env = "conda_envs/meteor_env.yml"
-params.gene_catalogue = "hs_10_4_gut"
-params.fastq_extension = '.fastq.gz'
-params.cpus = 8
+
 
 def fastq_file_glob = "*${params.fastq_extension}"
 def fastq_file_regex = /^(.+?)(?:_([12]))?\Q${params.fastq_extension}\E$/
@@ -141,11 +137,11 @@ process meteor_merge {
 }
 
 
-workflow {
+workflow meteor {
     Channel.value(params.gene_catalogue)
         .set { gene_catalogue_ch }
     gene_catalogue_path = meteor_download(gene_catalogue_ch) 
-
+ 
     Channel
         .fromPath("${params.sequencing_data_dir}/**/${fastq_file_glob}")
         .map { fastq_file ->
@@ -170,9 +166,12 @@ workflow {
     mapping_res = meteor_mapping(grouped_indexed_fastq_files)
 
     profile_res = meteor_profile(mapping_res)
-
+    
     Channel.value(params.project_name)
         .set { project_name_ch }
-    meteor_merge(profile_res.collect(), gene_catalogue_path, project_name_ch)
+    merge_res = meteor_merge(profile_res.collect(), gene_catalogue_path, project_name_ch)
+
+    emit:
+    merge_res
 }
 
