@@ -47,7 +47,7 @@ sequencing\_data/
 │   ├── runC\_1.fastq.gz  
 │   ├── runC\_2.fastq.gz  
 │   ├── runD\_1.fastq.gz  
-│   ├── runD\_2.fastq.gz
+│   ├── runD\_2.fastq.gz  
 ├── sample3\_se/    
 │   ├── runE.fastq.gz  
 │   ├── runF.fastq.gz  
