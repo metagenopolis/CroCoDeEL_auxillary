@@ -15,37 +15,13 @@ Nextflow will automatically create the appropriate Conda environment and install
 
 ---
 
-## Input Data Structure
+## Input Files
 
-Organize your metagenomic data as follows:
+### Gene count table
 
-* Store all sequencing data in a single directory.
-* Each sample must be placed in its own subdirectory.
-* Each subdirectory should contain one or more FASTQ files.
+The workflow requires a gene count table (rows: gene IDs, columns: samples), such as the one generated with the [`meteor2`](./meteor2_wf) workflow, for example.
 
-> ⚠️ File naming must follow the convention with `_1` and `_2` indicating forward and reverse reads, respectively.
-> ⚠️ If these suffixes are not present, files will be treated as single-end reads.
-
-Example:
-
-sequencing\_data/  
-├── sample1\_pe/  
-│   ├── runA\_1.fastq.gz  
-│   ├── runA\_2.fastq.gz  
-│   ├── runB\_1.fastq.gz  
-│   ├── runB\_2.fastq.gz  
-├── sample2\_pe/  
-│   ├── runC\_1.fastq.gz  
-│   ├── runC\_2.fastq.gz  
-│   ├── runD\_1.fastq.gz  
-│   ├── runD\_2.fastq.gz  
-├── sample3\_se/  
-│   ├── runE.fastq.gz  
-│   ├── runF.fastq.gz  
-
----
-
-## Contamination Description Table
+### Contamination Description Table
 
 Prepare a tab-separated values (TSV) file listing the contaminated samples to generate, with the following columns:
 
@@ -62,7 +38,7 @@ Prepare a tab-separated values (TSV) file listing the contaminated samples to ge
 
 ---
 
-### Basic command
+## Basic command
 
 ```bash
 nextflow run simulate.nf \
@@ -83,7 +59,7 @@ The output directory contains the following main file:
 * `<project_name>.contaminated_samples.meteor2_species_ab_profiles.tsv`
   Species abundance table based on estimated genome coverage (rows: MSPs, columns: samples). This file is compatible with CroCoDeEL.  
 
-As well as the Meteor workflow output files.
+As well as the [`meteor2`](./meteor2_wf) workflow output files.
 
 ---
 
