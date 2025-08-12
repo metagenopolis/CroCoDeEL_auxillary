@@ -5,6 +5,10 @@ if (!params.conta_desc_table)  error "Missing required parameter: --conta_desc_t
 if (!params.output_dir)  error "Missing required parameter: --output_dir"
 if (!params.gene_count_table)  error "Missing required parameter: --gene_count_table"
 
+// Optional/default parameters
+params.R_env             = "${projectDir}/conda_envs/simulate_conta_rarefaction_env.yml"
+params.simulation_script = "${projectDir}/Rscript/simulationContamination.R"
+
 process simulate_contamination {
     conda "${params.R_env}"
 
