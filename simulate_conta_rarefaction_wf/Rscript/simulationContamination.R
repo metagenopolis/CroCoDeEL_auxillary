@@ -77,16 +77,18 @@ computeFilteredVectors <- function (profile, type = "mean", filt = 10, debug = F
 }
 
 ## _________________
-
-hs_10_4_igc2.id = read_tsv('/projects/biodatabank/catalogue/hs_10_4_igc2/sequences/hs_10_4_igc2.id.tsv',
-                           col_names = c('gene_id','gene_name','gene_length'), show_col_types = FALSE) %>%
+temp1 = tempfile()
+download.file("https://entrepot.recherche.data.gouv.fr/api/access/datafile/:persistentId?persistentId=doi:10.57745/D07SEU", temp1)
+gzfile(temp1, 'rt')
+hs_10_4_igc2.id = read_tsv(temp1, col_names = c('gene_id','gene_name','gene_length'), show_col_types = FALSE) %>%
   mutate(gene_id = as.character(gene_id))
+unlink(temp1)
 
-temp = tempfile()
-download.file("https://entrepot.recherche.data.gouv.fr/api/access/datafile/:persistentId?persistentId=doi:10.57745/SOKOXS", temp)
-gzfile(temp, 'rt')
-MSP_data = read_tsv(temp)
-unlink(temp)
+temp2 = tempfile()
+download.file("https://entrepot.recherche.data.gouv.fr/api/access/datafile/:persistentId?persistentId=doi:10.57745/SOKOXS", temp2)
+gzfile(temp2, 'rt')
+MSP_data = read_tsv(temp2)
+unlink(temp2)
 
 mgs_gut = split(MSP_data$gene_id,MSP_data$msp_name)
 mgs_gut = selMGS(mgs_gut, marker = T)

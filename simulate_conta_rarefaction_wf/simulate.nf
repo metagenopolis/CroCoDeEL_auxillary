@@ -1,11 +1,9 @@
 nextflow.enable.dsl=2
 
-include { meteor } from '../meteor2_wf/meteor.nf'
-
 // Mandatory parameters
 if (!params.conta_desc_table)  error "Missing required parameter: --conta_desc_table"
 if (!params.output_dir)  error "Missing required parameter: --output_dir"
-
+if (!params.gene_count_table)  error "Missing required parameter: --gene_count_table"
 
 process simulate_contamination {
     conda "${params.R_env}"
@@ -60,19 +58,19 @@ process merge_files {
 }
 
 workflow {
-    meteor().merge_res.flatten().filter { it.name.endsWith("meteor2_raw_gene_profiles.tsv") }
-    .set { meteor_res }
 
-    meteor_res.view()
+    Channel
+    .fromPath(params.gene_count_table)
+    .set { gene_count_table }
 
     Channel
     .fromPath(params.conta_desc_table)
     .splitCsv(header:true, sep:'\t')
-    .combine(meteor_res)
+    .combine(gene_count_table)
     .map { row, gene_count_file ->
         tuple(
             file(params.simulation_script), 
-            gene_count_file,
+            file(gene_count_file),
             row.contaminated_sample_name,
             row.source_sample_name,
             row.sink_sample_name,
@@ -84,6 +82,6 @@ workflow {
     .set { contamination_tasks }
 
 	contamination_res = simulate_contamination(contamination_tasks)
-    contamination_res.view()
+
     merge_files(contamination_res.collect())
 }
