@@ -67,9 +67,9 @@ Prepare a tab-separated values (TSV) file listing the contaminated samples to ge
 ```bash
 nextflow run simulate.nf \
   --project_name <output_files_prefix> \
-  --sequencing_data_dir <path_to_sequencing_data> \
+  --gene_count_table <path_to_gene_count> \
   --conta_desc_table <path_to_description_table.tsv> \
-  --output_dir <output_dir>
+  --output_dir <path_to_output_dir>
  ```
 ### Optional Parameters
 
