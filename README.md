@@ -15,6 +15,13 @@ This repository provides auxiliary scripts and workflows to support the reproduc
 
 ---
 
+### [`simulate_conta_rarefaction_wf`](./simulate_conta_rarefaction_wf)
+
+> **Purpose**: Simulate sample cross-contamination by rarefaction and mixing from real metagenomic datasets, as defined in a user-provided table.
+
+📘 [See full documentation](./simulate_conta_rarefaction_wf/README.md)
+
+
 ### [`simulate_conta_read_subsampling_wf`](./simulate_conta_read_subsampling_wf)
 
 > **Purpose**: Simulate sample cross-contamination by subsampling and mixing reads from real metagenomic datasets, as defined in a user-provided table.
