@@ -170,8 +170,5 @@ workflow meteor {
     Channel.value(params.project_name)
         .set { project_name_ch }
     merge_res = meteor_merge(profile_res.collect(), gene_catalogue_path, project_name_ch)
-
-    emit:
-    merge_res
 }
 
