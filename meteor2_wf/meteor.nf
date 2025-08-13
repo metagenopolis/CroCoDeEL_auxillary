@@ -175,4 +175,3 @@ workflow {
         .set { project_name_ch }
     meteor_merge(profile_res.collect(), gene_catalogue_path, project_name_ch)
 }
-

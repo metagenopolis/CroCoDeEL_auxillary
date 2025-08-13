@@ -1,0 +1,3 @@
+contaminated_sample_name	source_sample_name	sink_sample_name	num_reads_source	num_reads_contaminated_sample	contamination_rate
+sample1_conta	sample2	sample1	5000000	1000000	0.2	
+sample3_conta	sample4	sample3	2000000	3000000	0.6	
