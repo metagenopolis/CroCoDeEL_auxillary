@@ -55,7 +55,7 @@ nextflow run simulate.nf \
 ## Output Files
 
 The output directory will contain the following file:
-* `<project_name>.contaminated_samples.meteor2_species_ab_profiles.tsv`
+* `<project_name>.contaminated_samples.meteor2_species_ab_profiles.tsv`  
   This is a species abundance table, where rows represent species (as MSPs) and columns represent samples.  
   This file is compatible with CroCoDeEL.
 
